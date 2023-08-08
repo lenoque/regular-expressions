@@ -26,8 +26,8 @@ if __name__ == "__main__":
         for row in reader:
             lastname, firstname, surname = format_name(row['lastname'], row['firstname'], row['surname'])
             phone = format_phone_numbers(row['phone'])
-            if (lastname, firstname, surname) not in contacts_list:
-                contacts_list[(lastname, firstname, surname)] = {
+            if (lastname, firstname) not in contacts_list:
+                contacts_list[(lastname, firstname)] = {
                     'lastname': lastname,
                     'firstname': firstname,
                     'surname': surname,
@@ -36,8 +36,8 @@ if __name__ == "__main__":
                     'phone': phone,
                     'email': row['email']
                 }
-            elif phone and not contacts_list[(lastname, firstname, surname)]['phone']:
-                contacts_list[(lastname, firstname, surname)]['phone'] = phone
+            elif phone and not contacts_list[(lastname, firstname)]['phone']:
+                contacts_list[(lastname, firstname)]['phone'] = phone
 
     fieldnames = ['lastname', 'firstname', 'surname', 'organization', 'position', 'phone', 'email']
     with open("phonebook.csv", "w", encoding='utf-8') as fp:
